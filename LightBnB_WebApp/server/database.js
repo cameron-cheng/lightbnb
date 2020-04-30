@@ -66,8 +66,6 @@ const addUser =  function(user) {
   RETURNING *
   `, [user.name, user.email, user.password])
   .then (res => res.rows[0]);
-   
-
 }
 exports.addUser = addUser;
 
@@ -90,6 +88,7 @@ GROUP BY properties.id, reservations.id
 ORDER BY reservations.start_date
 LIMIT $2;
 `, [guest_id, limit])
+  .then(res => res.rows)
 }
 exports.getAllReservations = getAllReservations;
 
